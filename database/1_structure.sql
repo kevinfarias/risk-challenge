@@ -1,7 +1,3 @@
-CREATE DATABASE banking;
-
-USE banking;
-
 CREATE TABLE transaction_type (
     id integer not null primary key,
     name character varying(255) not null
