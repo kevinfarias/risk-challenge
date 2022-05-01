@@ -1,0 +1,23 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: stone_database_challenge
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      PGDATA: /data/postgres_data
+    volumes:
+       - postgres:/data/postgres_data
+    ports:
+      - "1234:5432"
+    networks:
+      - stone-challenge
+    restart: unless-stopped
+networks:
+  stone-challenge:
+    driver: bridge
+
+volumes:
+  postgres:
