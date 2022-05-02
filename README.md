@@ -1,6 +1,6 @@
 # Introdução
   
-Solução para o desafio proposto pela Stone pagamentos.  
+Solução para o desafio proposto pelo time de riscos.  
 Este repositório está dividido em duas pastas, cada qual responsável pela resolução de cada teste:  
   
   
