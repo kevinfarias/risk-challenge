@@ -1,0 +1,10 @@
+version: "3.5"
+
+services:
+  shopping-list:
+    container_name: "elixir_shopping_list_challenge"
+    command: "mix test"
+    build:
+      context: .
+    volumes:
+      - ./:/app

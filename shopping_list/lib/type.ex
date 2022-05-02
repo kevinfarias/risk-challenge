@@ -14,7 +14,11 @@ defmodule ShoppingList.Type do
 
   @type buyer_list :: [buyer]
 
-  @type result_list :: %{
+  @type result_list_unformatted :: %{
+          required(Integer.t()) => String.t()
+        }
+
+  @type result_list_formatted :: %{
           required(String.t()) => String.t()
         }
 end
