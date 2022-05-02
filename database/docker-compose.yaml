@@ -1,0 +1,26 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: stone_database_challenge_sql
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      PGDATA: /data/postgres_data
+      POSTGRES_DB: banking
+    volumes:
+       - /postgres/stone:/data/postgres_data
+       - ./1_structure.sql:/docker-entrypoint-initdb.d/create_tables.sql
+       - ./2_seed.sql:/docker-entrypoint-initdb.d/fill_tables.sql
+    ports:
+      - "1234:5432"
+    networks:
+      - stone-challenge
+    restart: unless-stopped
+networks:
+  stone-challenge:
+    driver: bridge
+
+volumes:
+  postgres:
