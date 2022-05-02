@@ -8,17 +8,17 @@ defmodule ShoppingListTest do
       %{
         name: "Cebola",
         quantity: 3,
-        unit_price: 1
+        unit_price: 100
       },
       %{
         name: "Tomate",
         quantity: 2,
-        unit_price: 1.5
+        unit_price: 150
       },
       %{
         name: "Alface",
         quantity: 4,
-        unit_price: 1
+        unit_price: 100
       }
     ]
 
@@ -27,48 +27,77 @@ defmodule ShoppingListTest do
     assert final_price == 1000
   end
 
-  # test "it must distribute the price between the buyers list" do
-  #   item_list = [
-  #     %{
-  #       name: "Cebola",
-  #       quantity: 3,
-  #       unit_price: 1
-  #     },
-  #     %{
-  #       name: "Tomate",
-  #       quantity: 2,
-  #       unit_price: 1.5
-  #     },
-  #     %{
-  #       name: "Alface",
-  #       quantity: 4,
-  #       unit_price: 1
-  #     }
-  #   ]
+  test "it must throw an error when the one of the two lists are empty" do
+    item_list = [
+      %{
+        name: "Cebola",
+        quantity: 3,
+        unit_price: 0
+      }
+    ]
 
-  #   buyers_list = [
-  #     %{
-  #       name: "Kevin Farias",
-  #       email: "kevin@farias.com"
-  #     },
-  #     %{
-  #       name: "John Doe",
-  #       email: "john@doe.com"
-  #     },
-  #     %{
-  #       name: "Jane Doe",
-  #       email: "jane@doe.com"
-  #     }
-  #   ]
+    buyers_list = [
+      %{
+        name: "Kevin Farias",
+        email: "kevin@farias.com"
+      }
+    ]
 
-  #   {:ok, distribute_price_result} = item_list |> List.distribute_price(buyers_list)
+    {:error, message} = List.distribute_price([], [])
+    assert message == "The two lists must contain values!"
 
-  #   expected_result = %{
-  #     "kevin@farias.com": "R$ 3,33",
-  #     "john@doe.com": "R$ 3,33",
-  #     "jane@doe.com": "R$ 3,34"
-  #   }
+    {:error, message} = List.distribute_price(item_list, [])
+    assert message == "The buyer list must contain values!"
 
-  #   assert expected_result == distribute_price_result
-  # end
+    {:error, message} = List.distribute_price([], buyers_list)
+    assert message == "The item list cannot be empty"
+
+    {:error, message} = List.distribute_price(item_list, buyers_list)
+    assert message == "You must pass a list with valid values (bigger than 0)"
+  end
+
+  test "it must distribute the price between the buyers list" do
+    item_list = [
+      %{
+        name: "Cebola",
+        quantity: 3,
+        unit_price: 100
+      },
+      %{
+        name: "Tomate",
+        quantity: 2,
+        unit_price: 150
+      },
+      %{
+        name: "Alface",
+        quantity: 4,
+        unit_price: 100
+      }
+    ]
+
+    buyers_list = [
+      %{
+        name: "Kevin Farias",
+        email: "kevin@farias.com"
+      },
+      %{
+        name: "John Doe",
+        email: "john@doe.com"
+      },
+      %{
+        name: "Jane Doe",
+        email: "jane@doe.com"
+      }
+    ]
+
+    {:ok, distribute_price_result} = item_list |> List.distribute_price(buyers_list)
+
+    expected_result = %{
+      "kevin@farias.com" => "R$ 3,33",
+      "john@doe.com" => "R$ 3,33",
+      "jane@doe.com" => "R$ 3,34"
+    }
+
+    assert expected_result == distribute_price_result
+  end
 end
