@@ -93,9 +93,9 @@ defmodule ShoppingListTest do
     {:ok, distribute_price_result} = item_list |> List.distribute_price(buyers_list)
 
     expected_result = %{
-      "kevin@farias.com" => "R$ 3,33",
+      "jane@doe.com" => "R$ 3,34",
       "john@doe.com" => "R$ 3,33",
-      "jane@doe.com" => "R$ 3,34"
+      "kevin@farias.com" => "R$ 3,33"
     }
 
     assert expected_result == distribute_price_result
