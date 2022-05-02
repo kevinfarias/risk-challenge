@@ -3,7 +3,7 @@
 Baseado no desafio proposto, foi desenvolvido utilizando o banco de dados PostgreSQL.  
 Para facilitar, uma imagem docker foi disponibilizada para uso através do comando `docker-compose up --build`.  
 Os dados de acesso são:  
-1. Usuario: postgres
+1. Usuário: postgres
 2. Senha: changeme
 3. Banco: banking
 4. Porta: 1234

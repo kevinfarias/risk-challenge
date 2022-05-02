@@ -16,5 +16,5 @@ A estrutura de pastas/arquivos é realizada do seguinte modo:
   
 Visando uma maior praticidade ao rodar o projeto, foi disponibilizada uma imagem docker, que pode ser rodada através do comando: `docker-compose up --build`
   
-A imagem compila as dependências e roda o comando: `mix test` que é responsável por rodar os testes unitàrios.
+A imagem compila as dependências e roda o comando: `mix test` que é responsável por rodar os testes unitários.
   
