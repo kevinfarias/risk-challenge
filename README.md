@@ -5,4 +5,4 @@ Este repositório está dividido em duas pastas, cada qual responsável pela res
   
   
 1.  `database`: desafio em SQL
-2.  `item_list`: desafio de lista de compras
+2.  `shopping_list`: desafio de lista de compras
