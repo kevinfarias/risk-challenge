@@ -10,7 +10,7 @@ services:
       PGDATA: /data/postgres_data
       POSTGRES_DB: banking
     volumes:
-       - /postgres/stone:/data/postgres_data
+       - /postgres_stone:/data/postgres_data
        - ./1_structure.sql:/docker-entrypoint-initdb.d/create_tables.sql
        - ./2_seed.sql:/docker-entrypoint-initdb.d/fill_tables.sql
     ports:
