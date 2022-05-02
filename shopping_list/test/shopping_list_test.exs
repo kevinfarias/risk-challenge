@@ -100,4 +100,10 @@ defmodule ShoppingListTest do
 
     assert expected_result == distribute_price_result
   end
+
+  test "it must call the API interface successfully" do
+    {:error, message} = ShoppingList.calculate([], [])
+
+    assert message == "The two lists must contain values!"
+  end
 end
