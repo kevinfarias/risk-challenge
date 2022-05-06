@@ -3,11 +3,7 @@ defmodule ShoppingList.Impl.Iterator do
 
   @spec iterate(Type.buyer_list(), Integer.t(), Integer.t()) :: Type.result_list_formatted()
 
-  def iterate([head | []], value_each_buyer, rest_of_value_division) do
-    %{
-      head.email => value_each_buyer + rest_of_value_division
-    }
-  end
+  def iterate([], _value_each_buyer, _rest_of_value_division), do: %{}
 
   def iterate([head | tail], value_each_buyer, rest_of_value_division)
       when rest_of_value_division > 0 do
