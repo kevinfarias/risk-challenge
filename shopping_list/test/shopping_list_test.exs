@@ -106,4 +106,49 @@ defmodule ShoppingListTest do
 
     assert message == "The two lists must contain values!"
   end
+
+  test "it must divide with equality" do
+    item_list = [
+      %{
+        name: "Cebola",
+        quantity: 1,
+        unit_price: 51
+      },
+      %{
+        name: "Tomate",
+        quantity: 1,
+        unit_price: 51
+      }
+    ]
+
+    buyers_list = [
+      %{
+        name: "Kevin Farias",
+        email: "kevin@farias.com"
+      },
+      %{
+        name: "John Doe",
+        email: "john@doe.com"
+      },
+      %{
+        name: "Jane Doe",
+        email: "jane@doe.com"
+      },
+      %{
+        name: "Joao da Silva",
+        email: "joao@dasilva.com"
+      }
+    ]
+
+    {:ok, distribute_price_result} = item_list |> List.distribute_price(buyers_list)
+
+    expected_result = %{
+      "jane@doe.com" => "R$ 0,25",
+      "joao@dasilva.com" => "R$ 0,25",
+      "john@doe.com" => "R$ 0,26",
+      "kevin@farias.com" => "R$ 0,26"
+    }
+
+    assert expected_result == distribute_price_result
+  end
 end
